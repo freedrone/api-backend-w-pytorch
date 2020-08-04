@@ -1,16 +1,13 @@
 import mimetypes
-from datetime import datetime
 from threading import Thread
 
 import torch
-from flask import Flask, render_template, send_from_directory, request, jsonify
+from flask import Flask, render_template, send_from_directory, jsonify
 
 from ml_model import Model
 
 model: torch.nn.Module
 is_model_loaded = False
-
-SAVE_DEBUG_IMGS = True
 
 
 def get_model():
@@ -45,8 +42,6 @@ def static_js(path):
 def img_upload():
     if not is_model_loaded:
         return jsonify({})
-
-    _t = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
 
     return jsonify({})
 
