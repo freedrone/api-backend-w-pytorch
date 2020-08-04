@@ -8,6 +8,26 @@
 </head>
 <body>
 <div class="container py-5">
+    <div class="row no-gutters">
+        <div class="col-6">
+            <div class="row no-gutters">
+                <div class="col-6 align-content-center text">
+                    <div id="sketch" class="border border-dark" style="height: 256px; width: 256px">
+                        <canvas id="paint" width="256" height="256"></canvas>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="float-left mb-3">
+                        <input type="file" name="file" id="img-input" accept="image/*" />
+                    </div>
+                    <div class="float-left">
+                        <button id="pred-btn">Make Prediction</button>
+                        <button id="rset-btn">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
