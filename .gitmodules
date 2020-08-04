@@ -1,3 +1,3 @@
-[submodule "ml_model/fashion-image-inpainting"]
-	path = ml_model/fashion-image-inpainting
+[submodule "ml_model/fashion_image_inpainting"]
+	path = ml_model/fashion_image_inpainting
 	url = https://github.com/birdortyedi/fashion-image-inpainting.git
