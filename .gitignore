@@ -1,10 +1,6 @@
 *.iml
 *.idea
 
-ml_model/*
-!ml_model/fashion_image_inpainting
-!ml_model/__init__.py
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

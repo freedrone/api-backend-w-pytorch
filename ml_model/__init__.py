@@ -1,43 +1,27 @@
 import base64
 import io
+import os
+import sys
 from datetime import datetime
 
 import numpy as np
 import torch
 from PIL import Image
-from torch.autograd import Variable
-from torchvision.transforms import Compose, Resize, ToTensor, Normalize, ToPILImage
+from torchvision.transforms import Compose, Resize, ToTensor, Normalize
 
+# FASHION IMAGE INPAINTING CONFIGURATION
+# BEGIN :::
+# HACK insert fashion_image_inpainting repo to root
+__fashion_image_inpainting_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fashion_image_inpainting")
+if os.path.exists(__fashion_image_inpainting_path):
+    sys.path.insert(0, __fashion_image_inpainting_path)
+
+from .fashion_image_inpainting.utils import unnormalize_batch
 from .fashion_image_inpainting import models
+# END :::::
 
 MEAN = np.array([0.485, 0.456, 0.406])
 STD = np.array([0.229, 0.224, 0.225])
-
-
-def unnormalize_batch(batch, _mean, _std, div_factor=1.0):
-    """
-    Unnormalize batch
-    :param batch: input tensor with shape
-     (batch_size, nbr_channels, height, width)
-    :param div_factor: normalizing factor before data whitening
-    :return: unnormalized data, tensor with shape
-     (batch_size, nbr_channels, height, width)
-    """
-    # normalize using dataset mean and std
-    mean = batch.data.new(batch.data.size())
-    std = batch.data.new(batch.data.size())
-    mean[:, 0, :, :] = _mean[0]
-    mean[:, 1, :, :] = _mean[1]
-    mean[:, 2, :, :] = _mean[2]
-    std[:, 0, :, :] = _std[0]
-    std[:, 1, :, :] = _std[1]
-    std[:, 2, :, :] = _std[2]
-    batch = torch.div(batch, div_factor)
-
-    batch *= Variable(std)
-    batch = torch.add(batch, Variable(mean))
-
-    return batch
 
 
 def transform_image(image_bytes: bytes, mask_bytes: bytes):
